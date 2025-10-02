@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<header class="row bg-black ">
+    <div class="col-md-4">
+<img src="{% static 'portfolio/mi_foto01.jpg' %}" alt=""/>
+    </div>
+
+    <div class="col-md-8" my-auto>
+        <h2>Hola, soy Pablo Mora</h2>
+        <p>Analista Programado - FullStack</p>
+        Me gusta crear aplicaciones web y móviles
+        Mi stack de tecnologías incluye Django, React, React Native, Node.js y más.
+        Estoy emocionado de compartir mis proyectos y conocimientos contigo.
+        ¡Explora mi portafolio y no dudes en contactarme!</p>
+        <p><p style="text-align: justify;">Soy estudiante de la carrera de <b>Analista Programador</b> del Instituto <b>Inacap</b>, 
+      actualmente me encuentro cursando el 3er. semestre.</p> 
+      <p style="text-align: justify;">Me desempeño como desarrollador web, con experiencia en proyectos tanto <B>front-end como back-end</B>. Mi pasión y mi objetivo es crear soluciones tecnológicas elegantes, eficientes y funcionales.</p>
+<p style="text-align: justify;">Cuento con una marcada orientación al servicio, compromiso con el cumplimiento de los objetivos organizacionales y una atención
+minuciosa a los detalles. Me destaco por mi capacidad de gestión, responsabilidad, liderazgo con humildad, y una excelente disposición
+ para el trabajo en equipo, lo que me permite integrarme eficazmente en distintos entornos laborales y alcanzar metas comunes.</p>
+<p style="text-align: justify;">Además, poseo una <B>trayectoria de más de 17 años en el ámbito de la informática</B>, desempeñándome en áreas como <B>soporte técnico, 
+redes y desarrollo de software</B>, lo que me ha permitido adquirir una visión integral del rubro.</p>
+<p style="text-align: justify;">Estoy muy entusiasmado con la posibilidad de colaborar juntos y aportar soluciones efectivas que impulsen el crecimiento de su negocio.</p></p>
+
+<div class="col my-4 text-center">
+<a href="https://www.linkedin.com/in/pablo-mora-gonz%C3%A1lez-957aa1188" class="btn btn-primary btn-lg rounde-0 my-3" target="_blank">LinkedIn</a>
+    <a href="{% static 'portfolio/CV_PM_25.pdf' %}" class="btn btn-primary btn-lg rounde-0 my-3">Download CV</a>
+</div>   
+    </div>
+
+</header>
+
+
+
+<div class="row my-4 text-center">
+    <h3>Mis Proyectos</h3>
+  <div class="container text-center">
+      <p class="lead text-muted mx-auto" style="text-align: justify; max-width: 700px;">
+      Aquí presento una selección de proyectos que he desarrollado, 
+      combinando creatividad, tecnología y enfoque en resultados.  
+      Cada trabajo refleja mi compromiso con la calidad, la innovación y la mejora continua, 
+      utilizando herramientas modernas y las mejores prácticas de desarrollo.  
+      💡 Explora, revisa y conoce más sobre mi forma de crear soluciones digitales.
+    </p>
+  </div>
+{% for proyecto in proyecto %}
+
+<div class="col-md-4 p-4">
+    <div class="card bg-black card-project">
+         <img src="{{ proyecto.image.url }}" alt="{{proyecto.title}}" class="card-img-top"/>
+        <div class="card-body">
+     
+                <h2>{{ proyecto.title }}</h2><p>{{ proyecto.description }}</p>
+   
+
+    {% if proyecto.url %}
+     <a href="{{proyecto.url}}" class="btn btn-light rounded-0 btm-sm" target="_blank">{{proyecto.url}}</a> 
+
+    {% endif %}
+        </div>
+    </div>
+</div>
+    {% endfor %} 
+    
+    {% endblock %}
+
+</div>

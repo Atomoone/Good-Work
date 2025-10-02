@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+{% load humanize %}
+{% load currency_filters %}
+{% load static %}
+
+{% block content %}
+<h1 class="text-left my-4">Productos</h1>
+
+<div class="container">
+    <div class="row g-4">
+        {% for producto in productos %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card bg-black card-project h-100 shadow-sm">
+                <img src="{{ producto.image.url }}" alt="{{ producto.title }}" class="card-img-top img-fluid"/>
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ producto.title }}</h5>
+                    <p class="card-text small">{{ producto.description|striptags|truncatechars:100}}</p>
+                    <p class="fw-bold text-success">Precio: {{ producto.precio|currency_clp }}</p>
+
+                    <!-- Botón para agregar al carrito -->
+                    <button class="btn btn-primary btn-sm add-to-cart"
+                        data-id="{{ producto.id }}"
+                        data-title="{{ producto.title }}"
+                        data-price="{{ producto.precio }}"
+                        data-image="{{ producto.image.url }}">
+                        🛒 Agregar al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const carritoContainer = document.getElementById('carrito-container');
+    const carritoLista = document.getElementById('carrito-lista');
+    const carritoTotal = document.getElementById('carrito-total');
+    const formWebpay = document.getElementById('form-webpay');
+    const montoWebpay = document.getElementById('monto-webpay');
+
+    let carrito = [];
+
+    function actualizarCarrito() {
+        carritoLista.innerHTML = '';
+        let total = 0;
+        carrito.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `${item.title} - ${new Intl.NumberFormat('es-CL', {style:'currency', currency:'CLP'}).format(item.price)}`;
+            carritoLista.appendChild(li);
+            total += parseFloat(item.price);
+        });
+        carritoTotal.textContent = new Intl.NumberFormat('es-CL', {style:'currency', currency:'CLP'}).format(total);
+
+        // Mostrar carrito y formulario solo si hay productos
+        carritoContainer.style.display = carrito.length ? 'block' : 'none';
+        formWebpay.style.display = carrito.length ? 'block' : 'none';
+        montoWebpay.value = total;
+    }
+
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', function() {
+            carrito.push({
+                id: this.dataset.id,
+                title: this.dataset.title,
+                price: this.dataset.price
+            });
+            actualizarCarrito();
+        });
+    });
+});
+</script>
+
+{% endblock %}
