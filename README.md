@@ -50,6 +50,7 @@ Instalar dependencias:
 pip install -r requirements.txt
 
 📂 Estructura del proyecto
+```
 django-portafolio/
 │── manage.py
 │── db.sqlite3
@@ -57,6 +58,7 @@ django-portafolio/
 │── requerimiento.txt
 │── .gitignore
 │── <carpetas de apps y templates>
+```
 
 👨‍💻 Uso
 
