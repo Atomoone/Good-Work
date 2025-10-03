@@ -25,11 +25,11 @@ Su objetivo es ofrecer una plataforma en la que se puedan mostrar proyectos, ser
 ---
 
 ## 📋 Requisitos previos
-
+```
 - Python 3.10+  
 - pip (gestor de paquetes de Python)  
 - Entorno virtual recomendado (venv)  
-
+```
 ---
 
 ## ⚙️ Instalación
@@ -39,11 +39,11 @@ Su objetivo es ofrecer una plataforma en la que se puedan mostrar proyectos, ser
    git clone <URL-del-repo>
    cd django-portafolio
    Crear y activar un entorno virtual:
-
+```
 python -m venv venv
 source venv/bin/activate  # En Linux / Mac
 venv\Scripts\activate     # En Windows
-
+```
 
 Instalar dependencias:
 
